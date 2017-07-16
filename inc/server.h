@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/08 13:21:52 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/08 13:43:50 by mmoliele         ###   ########.fr       */
+/*   Created: 2017/07/16 11:54:10 by mmoliele          #+#    #+#             */
+/*   Updated: 2017/07/16 14:18:06 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 # include <unistd.h>
 # include <errno.h>
 # include <arpa/inet.h>
+# include <signal.h>
+# include <sys/fcntl.h>
 
-void	usage();
+# define BUFF_SIZE 256
+
+void		usage();
+void		handle_command(char **cmd, const int sockfd);
+void		handle_client(int sockfd);
+void		handle_request(char *input, const int client_fd);
 #endif

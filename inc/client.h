@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/08 13:20:40 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/09 13:29:44 by mmoliele         ###   ########.fr       */
+/*   Created: 2017/07/16 11:53:10 by mmoliele          #+#    #+#             */
+/*   Updated: 2017/07/16 11:53:54 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,9 @@
 # include <arpa/inet.h>
 
 void	usage();
+void	init(char**args, int sockfd);
+void	send_message(const int sockfd);
+
+void	handle_user_input(const int sockfd);
+
 #endif
