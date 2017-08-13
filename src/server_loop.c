@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 12:13:09 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 14:12:43 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/07/16 18:35:00 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void			handle_request(char *input, const int client_sockfd)
 			handle_pwd(client_sockfd);
 		else if (ft_strcmp(input_arr[0], "cd") == 0)
 			handle_cd(input_arr, client_sockfd);
+		else if (ft_strcmp(ft_strtrim(input_arr[0]), "put") == 0)
+			get_file(ft_strtrim(input_arr[1]), client_sockfd);
 		else
-		{
-			send(client_sockfd, "GET||PUT", 8, 0);
-		}
+			send(client_sockfd, "GET\n", 4, 0);
 	}
 	ft_memdel((void*)&input_arr);
 }

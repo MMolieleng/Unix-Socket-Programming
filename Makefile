@@ -13,11 +13,15 @@
 CLIENT = client
 SERVER = server
 
+FLAGS = -Wall -Werror -Wextra
+
 CLIENTSRC = src/client.c\
 	    src/client_loop.c\
+		src/client_handle_file.c\
 
 SERVERSRC = src/server.c\
 			src/server_loop.c\
+			src/server_handle_file.c\
 
 LIB	= -L libft/ -lft
 
@@ -25,9 +29,11 @@ INC	= -I libft/
 INC	+= -I inc/
 
 CLIENT_OBJ = client.o\
+			 client_handle_file.o\
 	client_loop.o#$(CLIENTSRC:.c=.o)
 
 SERVER_OBJ = server.o\
+			 server_handle_file.o\
 			 server_loop.o#$(SERVERSRC:.c=.o)
 
 all:server client

@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 11:33:00 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 11:41:20 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/07/16 15:37:07 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	usage(void)
 int		main(int argc, char **argv)
 {
 	int					sockfd;
-	struct sockaddr_in	address;
 
 	sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (argc != 3)

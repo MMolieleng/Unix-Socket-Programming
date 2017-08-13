@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 11:54:10 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 14:18:06 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/07/16 18:28:51 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@
 # include <sys/fcntl.h>
 
 # define BUFF_SIZE 256
+# define SEND_BUFF 256
 
 void		usage();
 void		handle_command(char **cmd, const int sockfd);
 void		handle_client(int sockfd);
 void		handle_request(char *input, const int client_fd);
+void		get_file(char *filename, const int sockfd);
 #endif

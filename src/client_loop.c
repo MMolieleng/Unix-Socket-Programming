@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 11:42:52 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 11:52:49 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/07/16 15:21:51 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static	int	handle_command(char *cmd)
 	else if (ft_strcmp(cmd_arr[0], "get") == 0)
 		return (1);
 	else if (ft_strcmp(cmd_arr[0], "put") == 0)
-		return (1);
+		return (2);
 	else if (ft_strcmp(cmd_arr[0], "ls") == 0)
 		return (1);
 	else if (ft_strcmp(cmd_arr[0], "cd") == 0)
@@ -73,7 +73,7 @@ void		handle_user_input(const int sockfd)
 	readlen = 0;
 	while ((readlen = read(0, buff, BUFF_SIZE)) > 0)
 	{
-		if (handle_command(ft_strtrim(buff)))
+		if (handle_command(ft_strtrim(buff)) == 1)
 		{
 			send_command(ft_strtrim(buff), sockfd);
 			server_response(sockfd);
@@ -83,6 +83,8 @@ void		handle_user_input(const int sockfd)
 			close(sockfd);
 			exit(1);
 		}
+		else if (handle_command(ft_strtrim(buff)) == 2)
+			put_file(ft_strsplit(buff, ' ')[1], sockfd);
 		ft_bzero(buff, BUFF_SIZE);
 		ft_putstr("\n> ");
 	}
