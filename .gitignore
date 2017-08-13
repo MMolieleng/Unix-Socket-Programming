@@ -1,3 +1,9 @@
 ._*
 .DS_Store
 .nfs*
+src/._*
+src/.DS_Store
+libft/._*
+libft/*.o
+libft/.DS_Store
+
