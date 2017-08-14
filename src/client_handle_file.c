@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 14:53:53 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 18:41:32 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/08/14 17:47:52 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,27 +73,34 @@ void	finish(int sock_fd, int fd, char *file)
 	ft_putendl("Sending file complete");
 }
 
-void	put_file(char *file, const int sock_fd)
+void	put_file(char *filename, const int sock_fd)
 {
-	int		fd;
-	char	buff[SEND_BUFF];
-	int		sents;
+	int				size;
+	int				fd;
+	int				status;
+	char			*buff;
+//	char			rec[10];
+	struct stat		s;
 
-	if ((fd = open(ft_strtrim(file), O_RDONLY)) < 0)
+	printf("filename %s\n", filename);
+	if ((fd = open(ft_strtrim(filename), O_RDONLY)))
 	{
-		ft_putendl("Error:File not found");
-		write(sock_fd, "ERR", 3);
-		return;
+		status = fstat(fd, &s);
+		size = s.st_size;
+		buff = ft_strjoin(
+				ft_strjoin("put ", ft_itoa(size)),ft_strjoin(" ", filename));
+		printf("%d , %d , nm=%s\n\n", size, fd, buff);
+		send(sock_fd, buff, ft_strlen(buff), 0);
+		
+	/*	int x = read(sock_fd, buff, 10);
+		buff[x] = '\0';
+		printf("\n\nStatus: %s\n\n", buff);
+	*/	free(buff);
+		
+		buff = mmap(0, size, PROT_READ, MAP_PRIVATE, fd, 0);
+		printf("\n%d, \n%s\n", sock_fd, buff);
+		send(sock_fd, buff, size, 0);
+		munmap(buff, size);
+		close(fd);
 	}
-	write(sock_fd, "OK", 2);
-	ft_bzero(buff, SEND_BUFF);
-	read(sock_fd, buff, SEND_BUFF);
-	if (ft_strcmp(buff, "ERR") == 0)
-	{
-		ft_putendl("Sending file error");
-		return;
-	}
-	sents = sent_count(file);
-	write(sock_fd, ft_itoa(sents), ft_strlen(ft_itoa(sents)));
-	finish(sock_fd, fd, file);
 }

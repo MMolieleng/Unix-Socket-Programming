@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 11:53:10 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 18:31:55 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/08/14 12:19:57 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <errno.h>
 # include <arpa/inet.h>
 # include <fcntl.h>
+# include <sys/stat.h>
+# include <sys/mman.h>
 
 void	usage();
 void	init(char**args, int sockfd);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/16 11:33:00 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/08/14 03:03:08 by                  ###   ########.fr       */
+/*   Created: 2017/08/14 11:28:37 by mmoliele          #+#    #+#             */
+/*   Updated: 2017/08/14 11:30:38 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init(char **argv, int sockfd)
 	len = sizeof(address);
 	server = gethostbyname(argv[1]);
 	address.sin_family = AF_INET;
-	address.sin_addr = *((struct in_addr *)server->h_addr);//inet_addr();
+	address.sin_addr = *((struct in_addr *)server->h_addr);
 	address.sin_port = htons(ft_atoi(argv[2]));
 	result = connect(sockfd, (struct sockaddr*)&address, len);
 	if (result == -1)

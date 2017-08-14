@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 11:42:52 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 15:21:51 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/08/14 17:07:30 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void		handle_user_input(const int sockfd)
 	char	buff[BUFF_SIZE];
 
 	readlen = 0;
+	ft_putstr("\n> ");
 	while ((readlen = read(0, buff, BUFF_SIZE)) > 0)
 	{
 		if (handle_command(ft_strtrim(buff)) == 1)
