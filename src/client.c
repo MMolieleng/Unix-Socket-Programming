@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 11:33:00 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 15:37:07 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/08/14 03:03:08 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ void	init(char **argv, int sockfd)
 	int					len;
 	int					result;
 	struct sockaddr_in	address;
+	struct hostent		*server;
 
 	len = sizeof(address);
+	server = gethostbyname(argv[1]);
 	address.sin_family = AF_INET;
-	address.sin_addr.s_addr = inet_addr(argv[1]);
-	address.sin_port = ft_atoi(argv[2]);
+	address.sin_addr = *((struct in_addr *)server->h_addr);//inet_addr();
+	address.sin_port = htons(ft_atoi(argv[2]));
 	result = connect(sockfd, (struct sockaddr*)&address, len);
 	if (result == -1)
 	{

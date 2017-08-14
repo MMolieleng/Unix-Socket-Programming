@@ -6,7 +6,7 @@
 #    By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/08 13:12:05 by mmoliele          #+#    #+#              #
-#*   Updated: 2017/07/16 01:24:59 by                  ###   ########.fr       *#
+#*   Updated: 2017/08/14 02:15:25 by                  ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,7 @@ server:
 	$(CC) $(FLAGS) -o $(SERVER) $(SERVER_OBJ) $(LIB)
 
 clean:
-	rm -f server*
-	rm -f client*
+	rm -f *.o
 
 #	rm -f server*#$(SERVER_OBJ)
 #	rm -f client*#$(CLIENT_OBJ)

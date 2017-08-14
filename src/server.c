@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 13:02:49 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 14:17:37 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/08/14 02:27:21 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	init(char **argv, int server_sockfd)
 	struct sockaddr_in	client_address;
 
 	server_address.sin_family = AF_INET;
-	server_address.sin_addr.s_addr = inet_addr("127.0.0.1");
-	server_address.sin_port = ft_atoi(argv[1]);
+	server_address.sin_addr.s_addr = INADDR_ANY;
+	server_address.sin_port = htons(ft_atoi(argv[1]));
 	server_len = sizeof(server_address);
 	bind(server_sockfd, (struct sockaddr*)&server_address, server_len);
 	listen(server_sockfd, 5);
