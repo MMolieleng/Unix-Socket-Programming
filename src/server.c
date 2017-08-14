@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 13:02:49 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/08/14 02:27:21 by                  ###   ########.fr       */
+/*   Updated: 2017/08/14 03:59:53 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	init(char **argv, int server_sockfd)
 		client_len = sizeof(client_address);
 		client_sockfd = accept(server_sockfd,
 				(struct sockaddr*)&client_address, &client_len);
+		if (client_sockfd)
+			ft_putendl("New connection established");
 		if (fork() == 0)
-		{
 			handle_client(client_sockfd);
-		}
 	}
 	close(client_sockfd);
 }
