@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 12:13:09 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/08/14 17:57:51 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/08/15 16:42:42 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,28 +75,22 @@ static	void	handle_ls(char **args, const int client_sockfd)
  */
 void			accept_file(char **argv, int client_sockfd)
 {
-	//	printf("[0]=%s, [1]=%s, [2]=%s, fd=%d\n\n",
-	//			argv[0], argv[1], argv[2], client_sockfd);
 	int		fd;
-//	int		fdc;
 	char	*buff;
 	int		size;
-//	fdc = 0;
 	fd = 0;
 	size = ft_atoi(argv[1]);
-//	if ((fdc = open(argv[2], O_RDONLY )) > 0)
-//	{
-		if ((fd = open(argv[2], O_CREAT |  O_WRONLY, 0666 )) > 0)
-		{
-			buff =	(char *)malloc(size);
-			read(client_sockfd, buff, size);
-			write(fd, buff, size);
-			printf("rec : => %s\n\n", buff);
-			free(buff);
-			printf("File created");
-			close(fd);
-//		}
-//		close(fdc);
+	//printf("Filename => %s\n len: %d\n", argv[2], (int)ft_strlen(argv[2]));
+	if ((fd = open(argv[2], O_WRONLY | O_APPEND | O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO)) > 0)
+	{
+		buff =	(char *)malloc(size);
+		read(client_sockfd, buff, size);
+		write(fd, buff, size);
+		//printf("rec : => %s\n\n", buff);
+		free(buff);
+		printf("File created\n\n");
+		close(fd);
+		return ;
 	}
 	printf("\n\nFile opening  = %d\n\n",fd);
 }
