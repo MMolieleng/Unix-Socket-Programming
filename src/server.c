@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/14 11:30:58 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/08/28 02:42:16 by                  ###   ########.fr       */
+/*   Created: 2017/08/28 08:32:11 by mmoliele          #+#    #+#             */
+/*   Updated: 2017/08/28 08:34:32 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	handle_client(int client_sockfd, char *cwd)
 	char	buff[BUFF_SIZE];
 	char	*str;
 
-    str = NULL;
-    ft_bzero(buff, BUFF_SIZE);
+	str = NULL;
+	ft_bzero(buff, BUFF_SIZE);
 	while ((recv(client_sockfd, buff, BUFF_SIZE, 0)) > 0)
 	{
 		str = ft_strtrim(buff);
@@ -56,7 +56,6 @@ void	init(char **argv, int server_sockfd, char *cwd)
 	bind(server_sockfd, (struct sockaddr*)&server_address, server_len);
 	listen(server_sockfd, 5);
 	signal(SIGCHLD, SIG_IGN);
-	printf("\n%s\n",cwd);
 	while (1)
 	{
 		ft_putendl("server waiting");
@@ -73,8 +72,8 @@ void	init(char **argv, int server_sockfd, char *cwd)
 
 int		main(int argc, char **argv)
 {
-	int	    server_sockfd;
-	char    *cwd;
+	int		server_sockfd;
+	char	*cwd;
 
 	server_sockfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (argc != 2)

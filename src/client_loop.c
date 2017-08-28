@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 11:42:52 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/08/28 01:40:48 by                  ###   ########.fr       */
+/*   Updated: 2017/08/28 15:58:28 by mmoliele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void		handle_user_input(const int sockfd)
 	ft_bzero(buff, BUFF_SIZE);
 	while ((readlen = read(0, buff, BUFF_SIZE)) > 0)
 	{
-	    buff[readlen] = '\0';
+		buff[readlen] = '\0';
 		if (handle_command(ft_strtrim(buff)) == 1)
 		{
 			send_command(ft_strtrim(buff), sockfd);
@@ -85,10 +85,13 @@ void		handle_user_input(const int sockfd)
 		else if (handle_command(ft_strtrim(buff)) == 0)
 		{
 			close(sockfd);
-			break;
+			break ;
 		}
 		else if (handle_command(ft_strtrim(buff)) == 2)
-			put_file(ft_strsplit(buff, ' ')[1], sockfd);
+		{
+			//put_file(ft_strsplit(buff, ' ')[1], sockfd);
+			put_file(buff, sockfd);
+		}
 		ft_bzero(buff, BUFF_SIZE);
 		ft_putstr("\n> ");
 	}
