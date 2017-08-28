@@ -6,7 +6,7 @@
 /*   By: mmoliele <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/16 11:54:10 by mmoliele          #+#    #+#             */
-/*   Updated: 2017/07/16 18:28:51 by mmoliele         ###   ########.fr       */
+/*   Updated: 2017/08/28 02:43:54 by                  ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 void		usage();
 void		handle_command(char **cmd, const int sockfd);
-void		handle_client(int sockfd);
-void		handle_request(char *input, const int client_fd);
+void		handle_client(int sockfd, char *cwd);
+void		handle_request(char *input, const int client_fd, char *cwd);
 void		get_file(char *filename, const int sockfd);
 #endif
